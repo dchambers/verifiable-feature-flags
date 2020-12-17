@@ -4,5 +4,13 @@
   "description": "Verifiable risk free feature flags.",
   "main": "dist/src/index.js",
   "author": "Dominic Chambers <dominic.chambers@babylonhealth.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "test": "tap --100",
+    "test:watch": "tap -w"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "tap": "^14.11.0"
+  }
 }

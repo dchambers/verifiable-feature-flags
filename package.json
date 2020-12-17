@@ -1,0 +1,8 @@
+{
+  "name": "verifiable-feature-flags",
+  "version": "0.1.0",
+  "description": "Verifiable risk free feature flags.",
+  "main": "dist/src/index.js",
+  "author": "Dominic Chambers <dominic.chambers@babylonhealth.com>",
+  "license": "MIT"
+}

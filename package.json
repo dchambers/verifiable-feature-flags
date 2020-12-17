@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "description": "Verifiable risk free feature flags.",
   "main": "dist/src/index.js",
+  "type": "module",
   "author": "Dominic Chambers <dominic.chambers@babylonhealth.com>",
   "license": "MIT",
   "scripts": {
-    "test": "tap --100",
-    "test:watch": "tap -w"
+    "test": "tap --100 --no-esm",
+    "test:watch": "tap -w --no-esm"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

@@ -1,7 +1,7 @@
 import tap from 'tap'
 import babel from '@babel/core'
 
-import shortCircuitPlugin from './index.mjs'
+import shortCircuitPlugin from './index.js'
 
 const transpile = (sourceCode, plugins = []) =>
   babel.transform(sourceCode, { plugins }).code.split('\n')

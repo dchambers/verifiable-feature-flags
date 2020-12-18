@@ -5,23 +5,18 @@ import { diffChars } from 'diff'
 import deactivateFeatureFlags from './deactivate-feature-flags.js'
 import bundleSourceCode from './bundle-source-code.js'
 
-const showUnguardedChanges = (
-  oldSrc,
-  newSrc,
-  featureFlagsOld,
-  featureFlagsNew
-) =>
+const showUnguardedChanges = (oldSrc, newSrc, entryPoint, featureFlags) =>
   new Promise((resolve) => {
     tmp.dir(async (err, tempDir, cleanupCallback) => {
       if (err) throw err
 
       const oldTarget = path.join(tempDir, 'old')
-      await deactivateFeatureFlags(oldSrc, featureFlagsOld, oldTarget)
-      const oldBundle = await bundleSourceCode(oldTarget)
+      await deactivateFeatureFlags(oldSrc, [], oldTarget)
+      const oldBundle = await bundleSourceCode(path.join(oldTarget, entryPoint))
 
       const newTarget = path.join(tempDir, 'new')
-      await deactivateFeatureFlags(newSrc, featureFlagsNew, newTarget)
-      const newBundle = await bundleSourceCode(newTarget)
+      await deactivateFeatureFlags(newSrc, featureFlags, newTarget)
+      const newBundle = await bundleSourceCode(path.join(newTarget, entryPoint))
 
       cleanupCallback()
 

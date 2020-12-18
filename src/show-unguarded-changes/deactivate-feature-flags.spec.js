@@ -1,10 +1,13 @@
 import tap from 'tap'
 import fs from 'fs'
 import path from 'path'
+import { fileURLToPath } from 'url'
 import { promisify } from 'util'
 import tmp from 'tmp'
 
 import deactivateFeatureFlags from './deactivate-feature-flags.js'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const readFile = promisify(fs.readFile)
 
@@ -13,7 +16,7 @@ tmp.dir(async (err, tempDir, cleanupCallback) => {
 
   await tap.test('deactivates the feature flags', async (test) => {
     await deactivateFeatureFlags(
-      path.join(path.resolve(), '/test-src/good-commit/after'),
+      path.join(__dirname, '/test-src/good-commit/after'),
       ['PROJ-001'],
       tempDir
     )
@@ -21,7 +24,7 @@ tmp.dir(async (err, tempDir, cleanupCallback) => {
     test.equal(
       main,
       `import createSomeNumbers from './create-some-numbers.js';
-import featureFlag from '../../../feature-flag';
+import featureFlag from './feature-flag';
 const items = [1, 2, 3];
 console.log('items: ', items);`
     )

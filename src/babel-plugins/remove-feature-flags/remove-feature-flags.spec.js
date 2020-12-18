@@ -1,7 +1,7 @@
 import tap from 'tap'
 import babel from '@babel/core'
 
-import removeFeatureFlagPlugin from './index.mjs'
+import removeFeatureFlagPlugin from './index.js'
 
 const transpile = (sourceCode, names) =>
   babel

@@ -16,30 +16,36 @@ const isLiteralFalse = (node) =>
 
 const shortCircuitPlugin = () => ({
   visitor: {
-    ArrayExpression: (path) => {
-      path.node.elements = path.node.elements.filter(
-        (node) => !isEmptyArraySpread(node)
-      )
+    ArrayExpression: {
+      exit: (path) => {
+        path.node.elements = path.node.elements.filter(
+          (node) => !isEmptyArraySpread(node)
+        )
+      },
     },
-    ObjectExpression: (path) => {
-      path.node.properties = path.node.properties.filter(
-        (node) => !isEmptyObjectSpread(node)
-      )
+    ObjectExpression: {
+      exit: (path) => {
+        path.node.properties = path.node.properties.filter(
+          (node) => !isEmptyObjectSpread(node)
+        )
+      },
     },
-    LogicalExpression: (path) => {
-      if (path.node.operator === '&&') {
-        if (isLiteralTrue(path.node.left)) {
-          Object.assign(path.node, path.node.right)
-        } else if (isLiteralTrue(path.node.right)) {
-          Object.assign(path.node, path.node.left)
+    LogicalExpression: {
+      exit: (path) => {
+        if (path.node.operator === '&&') {
+          if (isLiteralTrue(path.node.left)) {
+            Object.assign(path.node, path.node.right)
+          } else if (isLiteralTrue(path.node.right)) {
+            Object.assign(path.node, path.node.left)
+          }
+        } else if (path.node.operator === '||') {
+          if (isLiteralFalse(path.node.left)) {
+            Object.assign(path.node, path.node.right)
+          } else if (isLiteralFalse(path.node.right)) {
+            Object.assign(path.node, path.node.left)
+          }
         }
-      } else if (path.node.operator === '||') {
-        if (isLiteralFalse(path.node.left)) {
-          Object.assign(path.node, path.node.right)
-        } else if (isLiteralFalse(path.node.right)) {
-          Object.assign(path.node, path.node.left)
-        }
-      }
+      },
     },
   },
 })

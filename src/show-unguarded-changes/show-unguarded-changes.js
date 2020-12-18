@@ -8,8 +8,25 @@
  *    3. Returns the `diff` output of the two resulting bundle strings.
  */
 
-const transpile = (sourceCode) => babel.transform(sourceCode, { plugins }).code
+// const transpile = (sourceCode) => babel.transform(sourceCode, { plugins }).code
 
-const showUnguardedChanges = (oldSrc, newSrc, featureFlags) => {}
+import tmp from 'tmp'
+import deactivateFeatureFlags from './deactivate-feature-flags'
+
+const showUnguardedChanges = (
+  oldSrc,
+  newSrc,
+  featureFlagsOld,
+  featureFlagsNew
+) => {
+  tmp.dir(async (err, tempDir, cleanupCallback) => {
+    if (err) throw err
+    const oldTarget = path.join(tempDir, 'old')
+    await deactivateFeatureFlags(oldSrc, featureFlagsOld, oldTarget)
+    const newTarget = path.join(tempDir, 'new')
+    await deactivateFeatureFlags(newSrc, featureFlagsNew, newTarget)
+    // Here comes Dom's part...
+  })
+}
 
 export default showUnguardedChanges

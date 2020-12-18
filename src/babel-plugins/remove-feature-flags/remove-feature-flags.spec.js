@@ -17,6 +17,15 @@ tap.test("should replace featureFlag() with it's third parameter", (t) => {
   t.end()
 })
 
+tap.test('should ignore functions with other name', (t) => {
+  const js = transpile(
+    'notFeatureFlag("FEATURE_FLAG_1", () => "VALUE2", "VALUE1")',
+    ['FEATURE_FLAG_1']
+  )
+  t.equal(js, 'notFeatureFlag("FEATURE_FLAG_1", () => "VALUE2", "VALUE1");')
+  t.end()
+})
+
 tap.test(
   'should note replace featureFlag() when the name is not in the list',
   (t) => {

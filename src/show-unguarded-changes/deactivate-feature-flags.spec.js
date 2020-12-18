@@ -21,7 +21,7 @@ tmp.dir(async (err, tempDir, cleanupCallback) => {
     test.equal(
       main,
       `import createSomeNumbers from './create-some-numbers.js';
-import featureFlag from '../../../index';
+import featureFlag from '../../../feature-flag';
 const items = [1, 2, 3];
 console.log('items: ', items);`
     )

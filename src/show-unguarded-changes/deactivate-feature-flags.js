@@ -4,6 +4,7 @@ import path from 'path'
 import fs from 'fs'
 import { promisify } from 'util'
 import babel from '@babel/cli/lib/babel/dir'
+import typescriptPreset from '@babel/preset-typescript'
 
 const mkdir = promisify(fs.mkdir)
 
@@ -12,6 +13,8 @@ const doEnsureDir = async (dirPath) => mkdir(dirPath, { recursive: true })
 const doTransform = async (src, flagNames, outDir) =>
   babel({
     babelOptions: {
+      // typescript support
+      presets: [typescriptPreset],
       plugins: [removeFeatureFlags(flagNames), shortCircuitPlugin],
     },
     cliOptions: {

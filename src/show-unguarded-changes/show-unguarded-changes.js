@@ -26,6 +26,8 @@ const showUnguardedChanges = (
     const newTarget = path.join(tempDir, 'new')
     await deactivateFeatureFlags(newSrc, featureFlagsNew, newTarget)
     // Here comes Dom's part...
+
+    cleanupCallback()
   })
 }
 

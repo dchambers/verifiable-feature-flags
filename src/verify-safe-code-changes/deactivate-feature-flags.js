@@ -15,7 +15,6 @@ const doEnsureDir = async (dirPath) => mkdir(dirPath, { recursive: true })
 const doTransform = async (src, flagNames, outDir) =>
   babel({
     babelOptions: {
-      // typescript support
       presets: [typescriptPreset],
       plugins: [removeFeatureFlags(flagNames), shortCircuitPlugin],
     },

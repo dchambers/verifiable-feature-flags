@@ -2,14 +2,14 @@ import tap from 'tap'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
-import showUnguardedChanges from './index.js'
+import verifySafeCodeChanges from './index.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 tap.test(
   'no differences are reported if contained by feature flags',
   async (test) => {
-    const diff = await showUnguardedChanges(
+    const diff = await verifySafeCodeChanges(
       path.join(__dirname, './test-src/good-commit/before'),
       path.join(__dirname, './test-src/good-commit/after'),
       'main.js',
@@ -23,7 +23,7 @@ tap.test(
 tap.test(
   'differences reported if there are additional changes not guarded by `featureFlag`',
   async (test) => {
-    const diff = await showUnguardedChanges(
+    const diff = await verifySafeCodeChanges(
       path.join(__dirname, './test-src/bad-commit/before'),
       path.join(__dirname, './test-src/bad-commit/after'),
       'main.js',
@@ -37,7 +37,7 @@ tap.test(
 tap.test(
   'differences reported if incorrect feature flag names are used',
   async (test) => {
-    const diff = await showUnguardedChanges(
+    const diff = await verifySafeCodeChanges(
       path.join(__dirname, './test-src/good-commit/before'),
       path.join(__dirname, './test-src/good-commit/after'),
       'main.js',

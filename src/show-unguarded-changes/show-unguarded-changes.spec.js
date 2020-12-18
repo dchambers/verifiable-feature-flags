@@ -4,9 +4,11 @@ import showUnguardedChanges from './index.js'
 tap.test(
   'no differences are reported if contained by feature flags',
   (test) => {
-    const diff = showUnguardedChanges('./test-src/before', './test-src/after', [
-      'FEAT-001',
-    ])
+    const diff = showUnguardedChanges(
+      './test-src/good-commit/before',
+      './test-src/good-commit/after',
+      ['PROJ-001']
+    )
     test.deepEquals(diff, [])
     test.end()
   }

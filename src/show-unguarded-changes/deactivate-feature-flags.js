@@ -1,6 +1,5 @@
 import removeFeatureFlags from '../babel-plugins/remove-feature-flags'
 import shortCircuitPlugin from '../babel-plugins/short-circuit'
-import path from 'path'
 import fs from 'fs'
 import { promisify } from 'util'
 import babel from '@babel/cli/lib/babel/dir'

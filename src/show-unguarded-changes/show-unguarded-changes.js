@@ -11,7 +11,7 @@
 // const transpile = (sourceCode) => babel.transform(sourceCode, { plugins }).code
 
 import tmp from 'tmp'
-import deactivateFeatureFlags from './deactivate-feature-flags'
+import deactivateFeatureFlags from './deactivate-feature-flags.js'
 
 const showUnguardedChanges = (
   oldSrc,

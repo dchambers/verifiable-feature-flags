@@ -13,8 +13,8 @@ tmp.dir(async (err, tempDir, cleanupCallback) => {
 
   await tap.test('deactivates the feature flags', async (test) => {
     await deactivateFeatureFlags(
-      path.join(__dirname, '/test-src/after'),
-      ['FEAT-001'],
+      path.join(__dirname, '/test-src/good-commit/after'),
+      ['PROJ-001'],
       tempDir
     )
     const main = await readFile(path.join(tempDir, 'main.js'), 'utf8')

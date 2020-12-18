@@ -4,11 +4,14 @@
   "description": "Verifiable risk free feature flags.",
   "main": "dist/src/index.js",
   "type": "module",
+  "engines": {
+    "node": ">=12.13.0"
+  },
+  "engineStrict": true,
   "author": "Dominic Chambers <dominic.chambers@babylonhealth.com>",
   "license": "MIT",
   "scripts": {
-    "test": "tap --100 --no-esm",
-    "test:watch": "tap -w --no-esm"
+    "test": "tap --100 --no-esm --no-cov"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",

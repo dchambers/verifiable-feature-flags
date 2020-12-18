@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "rollup": "^2.35.1",
     "tap": "^14.11.0"
   }
 }

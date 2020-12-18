@@ -13,7 +13,7 @@ tmp.dir(async (err, tempDir, cleanupCallback) => {
 
   await tap.test('deactivates the feature flags', async (test) => {
     await deactivateFeatureFlags(
-      path.join(__dirname, '/test-src/good-commit/after'),
+      path.join(path.resolve(), '/test-src/good-commit/after'),
       ['PROJ-001'],
       tempDir
     )

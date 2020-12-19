@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ts-node --transpile-only src/verify-safe-cmd.ts

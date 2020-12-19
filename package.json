@@ -1,9 +1,11 @@
 {
-  "name": "verifiable-feature-flags",
+  "name": "veriable-flags",
   "version": "0.1.0",
   "description": "Verifiable risk free feature flags.",
   "main": "dist/src/index.js",
-  "type": "module",
+  "bin": {
+    "verify-safe" : "./dist/src/verify-safe-cmd.js"
+  },
   "engines": {
     "node": ">=12.13.0"
   },
@@ -11,11 +13,16 @@
   "author": "Dominic Chambers <dominic.chambers@babylonhealth.com>",
   "license": "MIT",
   "scripts": {
-    "test": "tap --100 --no-esm --no-cov"
+    "test": "tap --100",
+    "test:watch": "tap -w"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
+    "@types/diff": "^4.0.2",
+    "@types/babel__core": "^7.1.12",
+    "@types/node": "^14.14.14",
+    "@types/tap": "^14.10.1",
     "diff": "^5.0.0",
     "rollup": "^2.35.1",
     "tap": "^14.11.0"

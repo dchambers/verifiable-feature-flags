@@ -1,10 +1,13 @@
 import tap from 'tap'
-import babel from '@babel/core'
+import { BabelFileResult, PluginItem, transform } from '@babel/core'
 
-import shortCircuitPlugin from './index.js'
+import shortCircuitPlugin from './index'
 
-const transpile = (sourceCode, plugins = []) =>
-  babel.transform(sourceCode, { plugins }).code.split('\n')
+const transpile = (sourceCode: string, plugins: PluginItem[] = []) => {
+  const result = transform(sourceCode, { plugins }) as BabelFileResult
+
+  result.code?.split('\n')
+}
 
 tap.test('short circuitable code is simplified (1)', (test) => {
   const sourceCode = `

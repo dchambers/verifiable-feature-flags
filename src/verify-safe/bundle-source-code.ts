@@ -1,6 +1,6 @@
 import { rollup } from 'rollup'
 
-const bundleSourceCode = async (src) => {
+const bundleSourceCode = async (src: string) => {
   const bundle = await rollup({
     input: src,
   })
